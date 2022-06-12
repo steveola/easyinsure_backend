@@ -82,8 +82,31 @@ def create_item_for_user(
 ):
     return crud.create_user_item(db=db, item=item, user_id=user_id)
 
-
 @app.get("/items/", response_model=List[schemas.Item])
 def read_items(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     items = crud.get_items(db, skip=skip, limit=limit)
     return items
+
+@app.post("/users/{user_id}/houses/", response_model=schemas.House)
+def create_house_for_user(
+    user_id: int, house: schemas.HouseCreate, db: Session = Depends(get_db)
+):
+    return crud.create_user_house(db=db, house=house, user_id=user_id)
+
+
+@app.get("/houses/", response_model=List[schemas.House])
+def read_houses(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    houses = crud.get_houses(db, skip=skip, limit=limit)
+    return houses
+
+@app.post("/users/{user_id}/condos/", response_model=schemas.Condo)
+def create_condo_for_user(
+    user_id: int, condo: schemas.CondoCreate, db: Session = Depends(get_db)
+):
+    return crud.create_user_condo(db=db, condo=condo, user_id=user_id)
+
+
+@app.get("/condos/", response_model=List[schemas.Condo])
+def read_condos(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    condos = crud.get_condos(db, skip=skip, limit=limit)
+    return condos

@@ -3,6 +3,116 @@ from typing import List, Optional
 from pydantic import BaseModel
 
 
+class HouseBase(BaseModel):
+    title: str
+    house_info_json: str  
+    description: Optional[str] = None
+    doc_stamps: Optional[str] = None
+    fire_service_stamps: Optional[str] = None
+    house_external_walls_entirely_concrete: Optional[str] = None
+    house_located_inside_village_subdivision: Optional[str] = None
+    house_no_building_amount: Optional[str] = None
+    house_no_city: Optional[str] = None
+    house_no_construction: Optional[str] = None
+    house_no_construction_other: Optional[str] = None
+    house_no_contents_amount: Optional[str] = None
+    house_no_country: Optional[str] = None
+    house_no_firefighting_mitigating_measure_equipment: Optional[str] = None
+    house_no_house_street: Optional[str] = None
+    house_no_items_to_insure: Optional[str] = None
+    house_no_number_of_stories: Optional[str] = None
+    house_no_perils_covered_aon: Optional[str] = None
+    house_no_perils_covered_auto_personal_accident: Optional[str] = None
+    house_no_perils_covered_own_damage_theft: Optional[str] = None
+    house_no_perils_excess_bodily_injury: Optional[str] = None
+    house_no_perils_medical_reimbursement: Optional[str] = None
+    house_no_perils_property_damage: Optional[str] = None
+    house_no_province: Optional[str] = None
+    house_no_province_state: Optional[str] = None
+    house_no_residential_home_package_options: Optional[str] = None
+    house_no_zip_code: Optional[str] = None
+    house_used_entirely_as_residence: Optional[str] = None
+    house_yes_city: Optional[str] = None
+    house_yes_country: Optional[str] = None
+    house_yes_email: Optional[str] = None
+    house_yes_house_street: Optional[str] = None
+    house_yes_last_name: Optional[str] = None
+    house_yes_name: Optional[str] = None
+    house_yes_phone: Optional[str] = None
+    house_yes_province_state: Optional[str] = None
+    house_yes_zip_code: Optional[str] = None
+    local_govt_tax: Optional[str] = None
+    premium: Optional[str] = None
+    sum_assured: Optional[str] = None
+    total_amount_due: Optional[str] = None
+
+class HouseCreate(HouseBase):
+    pass
+
+
+class House(HouseBase):
+    id: int
+    owner_id: int
+
+    class Config:
+        orm_mode = True
+
+#END HOUSE
+
+class CondoBase(BaseModel):
+    title: str
+    condo_info_json: str  
+    description: Optional[str] = None
+    condo_external_walls_entirely_concrete: Optional[str] = None
+    condo_no_boundaries: Optional[str] = None
+    condo_no_building_amount: Optional[str] = None
+    condo_no_city: Optional[str] = None
+    condo_no_construction: Optional[str] = None
+    condo_no_contents_amount: Optional[str] = None
+    condo_no_country: Optional[str] = None
+    condo_no_firefighting_mitigating_measure_equipment: Optional[str] = None
+    condo_no_items_to_insure: Optional[str] = None
+    condo_no_number_of_stories: Optional[str] = None
+    condo_no_perils_covered_aon: Optional[str] = None
+    condo_no_perils_covered_auto_personal_accident: Optional[str] = None
+    condo_no_perils_covered_own_damage_theft: Optional[str] = None
+    condo_no_perils_excess_bodily_injury: Optional[str] = None
+    condo_no_perils_medical_reimbursement: Optional[str] = None
+    condo_no_perils_property_damage: Optional[str] = None
+    condo_no_province_state: Optional[str] = None
+    condo_no_roofing: Optional[str] = None
+    condo_no_roofing_others: Optional[str] = None
+    condo_no_zip_code: Optional[str] = None
+    condo_yes_city: Optional[str] = None
+    condo_yes_condo_street: Optional[str] = None
+    condo_yes_country: Optional[str] = None
+    condo_yes_email: Optional[str] = None
+    condo_yes_name: Optional[str] = None
+    condo_yes_no_occupancy: Optional[str] = None
+    condo_yes_phone: Optional[str] = None
+    condo_yes_province_state: Optional[str] = None
+    condo_yes_residential_home_package_option: Optional[str] = None
+    condo_yes_zip_code: Optional[str] = None
+    doc_stamps: Optional[str] = None
+    fire_service_stamps: Optional[str] = None
+    local_govt_tax: Optional[str] = None
+    premium: Optional[str] = None
+    sum_assured: Optional[str] = None
+    total_amount_due: Optional[str] = None
+
+class CondoCreate(CondoBase):
+    pass
+
+
+class Condo(CondoBase):
+    id: int
+    owner_id: int
+
+    class Config:
+        orm_mode = True
+
+#END CONDO
+
 class ItemBase(BaseModel):
     title: str
     car_info_json: str  
@@ -46,6 +156,7 @@ class Item(ItemBase):
     class Config:
         orm_mode = True
 
+#END ITEM
 
 class UserBase(BaseModel):
     email: str
@@ -70,6 +181,8 @@ class User(UserBase):
     id: int
     is_active: bool
     items: List[Item] = []
+    houses: List[House] = []
+    condos: List[Condo] = []
 
     class Config:
         orm_mode = True

@@ -62,3 +62,29 @@ def create_user_item(db: Session, item: schemas.ItemCreate, user_id: int):
     db.commit()
     db.refresh(db_item)
     return db_item
+
+
+def get_houses(db: Session, skip: int = 0, limit: int = 100):
+    return db.query(models.House).offset(skip).limit(limit).all()
+
+def create_user_house(db: Session, house: schemas.HouseCreate, user_id: int):
+    db_house = models.House(**house.dict(),
+                    owner_id=user_id
+                )
+    db.add(db_house)
+    db.commit()
+    db.refresh(db_house)
+    return db_house
+
+       
+def get_condos(db: Session, skip: int = 0, limit: int = 100):
+    return db.query(models.Condo).offset(skip).limit(limit).all()
+
+def create_user_condo(db: Session, condo: schemas.CondoCreate, user_id: int):
+    db_condo = models.Condo(**condo.dict(),
+                    owner_id=user_id
+                )
+    db.add(db_condo)
+    db.commit()
+    db.refresh(db_condo)
+    return db_condo
