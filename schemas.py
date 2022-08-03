@@ -41,6 +41,7 @@ class HouseBase(BaseModel):
     house_yes_phone: Optional[str] = None
     house_yes_province_state: Optional[str] = None
     house_yes_zip_code: Optional[str] = None
+    vat: Optional[str] = None
     local_govt_tax: Optional[str] = None
     premium: Optional[str] = None
     sum_assured: Optional[str] = None
@@ -95,6 +96,7 @@ class CondoBase(BaseModel):
     condo_yes_zip_code: Optional[str] = None
     doc_stamps: Optional[str] = None
     fire_service_stamps: Optional[str] = None
+    vat: Optional[str] = None
     local_govt_tax: Optional[str] = None
     premium: Optional[str] = None
     sum_assured: Optional[str] = None
